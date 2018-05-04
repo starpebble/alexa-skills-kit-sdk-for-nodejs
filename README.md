@@ -37,6 +37,9 @@ Covers how to use service clients in your skill to access Alexa APIs.
 ### [Skill Builders](../../wiki/Skill-Builders)
 Covers how to configure and construct a skill instance.
 
+### [Managing In-Skill Purchases](../../wiki/Managing-In-Skill-Purchases)
+Covers how to manage in-skill products and the purchase experience in your skills.
+
 ## Samples
 
 ### [Hello World](https://github.com/alexa/skill-sample-nodejs-hello-world)
@@ -59,6 +62,15 @@ Template for a local recommendations skill. Alexa uses the data that you provide
 
 ### [Pet Match](https://github.com/alexa/skill-sample-nodejs-petmatch)
 Sample skill that matches the user with a pet. Alexa prompts the user for the information it needs to determine a match. Once all of the required information is collected, the skill sends the data to an external web service that processes the data and returns the match.
+
+### [High Low Game](https://github.com/alexa/skill-sample-nodejs-highlowgame)
+Template for a basic high-low game skill. When the user guesses a number, Alexa tells the user whether the number she has in mind is higher or lower.
+
+### [Decision Tree](https://github.com/alexa/skill-sample-nodejs-decision-tree)
+Template for a basic decision tree skill. Alexa asks the user a series of questions to get to a career suggestion.
+
+### [Device Address API](https://github.com/alexa/skill-sample-node-device-address-api)
+Sample skill that shows how to request and access the configured address in the user’s device settings.
 
 ## Got Feedback?
 Request and vote for Alexa features [here](https://alexa.uservoice.com/forums/906892-alexa-skills-developer-voice-and-vote)!
