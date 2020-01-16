@@ -11,8 +11,6 @@
  * permissions and limitations under the License.
  */
 
-'use strict';
-
 /**
  * An interface handling three level attributes: request, session and persistence.
  */
@@ -26,13 +24,13 @@ export interface AttributesManager {
      * Provides session attributes extracted from request envelope.
      * @returns {Object.<string, any>}
      */
-    getSessionAttributes() : {[key : string] : any};
+    getSessionAttributes<T = {[key : string] : any}>() : T;
     /**
-     * Provides persistent attributes retrieved and cached from persistence adapter.
+     * Provides persistent attributes retrieved and cached from persistence adapter, provide false to useSessionCache to ignore values cached from previous invocations.
+     * @param {boolean} [useSessionCache=true]
      * @returns {Promise<Object.<string, any>>}
      */
-    getPersistentAttributes() : Promise<{[key : string] : any}>;
-
+    getPersistentAttributes(useSessionCache? : boolean) : Promise<{[key : string] : any}>;
     /**
      * Overwrites the request attributes value.
      * @param {Object.<string, any>} requestAttributes
@@ -59,4 +57,10 @@ export interface AttributesManager {
      * @return {Promise<void>}
      */
     savePersistentAttributes() : Promise<void>;
+
+    /**
+     * Delete persistent attributes from the persistent layer if a persistence adapter is provided.
+     * @return {Promise<void>}
+     */
+    deletePersistentAttributes?() : Promise<void>;
 }

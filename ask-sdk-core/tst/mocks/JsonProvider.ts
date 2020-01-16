@@ -11,8 +11,6 @@
  * permissions and limitations under the License.
  */
 
-'use strict';
-
 import {
     Intent,
     RequestEnvelope,
@@ -20,6 +18,7 @@ import {
 } from 'ask-sdk-model';
 
 export const JsonProvider = {
+
     requestEnvelope() : RequestEnvelope {
         return {
             context : {
@@ -77,7 +76,7 @@ export const JsonProvider = {
             confirmationStatus : null,
             name : null,
             value : null,
-            resolutions: null,
+            resolutions : null,
         };
     },
 };

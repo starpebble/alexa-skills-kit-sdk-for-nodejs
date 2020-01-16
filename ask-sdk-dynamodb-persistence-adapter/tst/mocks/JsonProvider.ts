@@ -11,8 +11,6 @@
  * permissions and limitations under the License.
  */
 
-'use strict';
-
 import {
     Intent,
     RequestEnvelope,
@@ -37,6 +35,9 @@ export const JsonProvider = {
                     },
                     user : {
                         userId : null,
+                    },
+                    person : {
+                        personId : null,
                     },
                 },
             },

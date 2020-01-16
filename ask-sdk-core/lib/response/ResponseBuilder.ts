@@ -11,15 +11,16 @@
  * permissions and limitations under the License.
  */
 
-'use strict';
-
 import {
+    canfulfill,
     Directive,
     Intent,
     interfaces,
     Response,
+    ui,
 } from 'ask-sdk-model';
 import AudioItemMetadata = interfaces.audioplayer.AudioItemMetadata;
+import CanFulfillIntent = canfulfill.CanFulfillIntent;
 
 /**
  * An interface which helps building a response.
@@ -28,16 +29,18 @@ export interface ResponseBuilder {
     /**
      * Has Alexa say the provided speech to the user
      * @param {string} speechOutput
+     * @param {ui.PlayBehavior} playBehavior
      * @returns {ResponseBuilder}
      */
-    speak(speechOutput : string) : this;
+    speak(speechOutput : string, playBehavior? : ui.PlayBehavior) : this;
     /**
      * Has alexa listen for speech from the user. If the user doesn't respond within 8 seconds
      * then has alexa reprompt with the provided reprompt speech
      * @param {string} repromptSpeechOutput
+     * @param {ui.PlayBehavior} playBehavior
      * @returns {ResponseBuilder}
      */
-    reprompt(repromptSpeechOutput : string) : this;
+    reprompt(repromptSpeechOutput : string, playBehavior? : ui.PlayBehavior) : this;
     /**
      * Renders a simple card with the following title and content
      * @param {string} cardTitle
@@ -161,6 +164,12 @@ export interface ResponseBuilder {
      * @returns {ResponseBuilder}
      */
     addVideoAppLaunchDirective(source : string, title? : string, subtitle? : string) : this;
+    /**
+     * Adds canFulfillIntent to response.
+     * @param {canfulfill.CanFulfillIntent} canFulfillIntent
+     * @return {ResponseBuilder}
+     */
+    withCanFulfillIntent(canFulfillIntent : CanFulfillIntent) : this;
     /**
      * Sets shouldEndSession value to null/false/true
      * @param {boolean} val

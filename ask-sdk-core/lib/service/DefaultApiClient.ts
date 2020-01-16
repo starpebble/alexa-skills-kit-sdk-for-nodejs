@@ -11,13 +11,11 @@
  * permissions and limitations under the License.
  */
 
-'use strict';
-
 import { services } from 'ask-sdk-model';
+import { createAskSdkError } from 'ask-sdk-runtime';
 import { RequestOptions as HttpRequestOptions } from 'http';
 import { RequestOptions as HttpsRequestOptions } from 'https';
 import * as url from 'url';
-import { createAskSdkError } from '../util/AskSdkUtils';
 import ApiClientResponse = services.ApiClientResponse;
 import ApiClientRequest = services.ApiClientRequest;
 import ApiClient = services.ApiClient;
@@ -90,7 +88,7 @@ export class DefaultApiClient implements ApiClient {
  */
 function arrayToObjectHeader(header : Array<{key : string, value : string}>) : {[key : string] : string[]} {
     const reducer = (obj : {[key : string] : string[]}, item : {key : string, value : string})
-        : {[key : string] : string | string[]} => {
+        : {[key : string] : string[]} => {
         if (obj[item.key]) {
             obj[item.key].push(item.value);
         } else {
@@ -110,7 +108,7 @@ function arrayToObjectHeader(header : Array<{key : string, value : string}>) : {
  * @returns {{key : string, value : string}[]}
  */
 function objectToArrayHeader(header : {[key : string] : string | string[]}) : Array<{key : string, value : string}> {
-    const arrayHeader = <[{key : string, value : string}]> [];
+    const arrayHeader = <Array<{key : string, value : string}>> [];
 
     Object.keys(header).forEach((key : string) => {
         const headerArray = Array.isArray(header[key]) ? header[key] : [header[key]];

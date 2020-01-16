@@ -19,6 +19,8 @@
 - [ ] Bug fix (non-breaking change which fixes an issue)
 - [ ] New feature (non-breaking change which adds functionality)
 - [ ] Breaking change (fix or feature that would cause existing functionality to change)
+- [ ] Docs(Add new document content)
+- [ ] Translate Docs(Translate document content)
 
 ## Checklist
 <!--- Go over all the following points, and put an `x` in all the boxes that apply -->
@@ -29,6 +31,7 @@
 - [ ] I have read the **README** document
 - [ ] I have added tests to cover my changes
 - [ ] All new and existing tests passed
+- [ ] My commit message follows [Conventional Commit Guideline](https://conventionalcommits.org/)
 
 ## License
 <!--- The SDK is released under the [Apache 2.0 license][license], so any code you submit will be released under that license -->

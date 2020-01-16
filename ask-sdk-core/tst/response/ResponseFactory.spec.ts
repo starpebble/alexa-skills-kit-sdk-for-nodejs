@@ -11,9 +11,10 @@
  * permissions and limitations under the License.
  */
 
-'use strict';
-
-import { interfaces } from 'ask-sdk-model';
+import {
+     canfulfill,
+     interfaces,
+ } from 'ask-sdk-model';
 import { expect } from 'chai';
 import { ImageHelper } from '../../lib/response/ImageHelper';
 import { ResponseBuilder } from '../../lib/response/ResponseBuilder';
@@ -24,6 +25,7 @@ import PlayBehavior = interfaces.audioplayer.PlayBehavior;
 import ClearBehavior = interfaces.audioplayer.ClearBehavior;
 import Image = interfaces.display.Image;
 import BodyTemplate1 = interfaces.display.BodyTemplate1;
+import CanFulfillIntent = canfulfill.CanFulfillIntent;
 
 describe('ResponseFactory', () => {
 
@@ -38,6 +40,20 @@ describe('ResponseFactory', () => {
             };
 
         expect(responseBuilder.speak(speechOutput).getResponse()).to.deep.equal(expectResponse);
+    });
+
+    it('should build response with Ssml outputSpeech and play behavior', () => {
+        const responseBuilder : ResponseBuilder = ResponseFactory.init();
+        const speechOutput = 'HelloWorld!';
+        const expectResponse = {
+                    outputSpeech: {
+                        ssml: '<speak>' + speechOutput + '</speak>',
+                        type: 'SSML',
+                        playBehavior : 'ENQUEUE',
+                    },
+            };
+
+        expect(responseBuilder.speak(speechOutput, 'ENQUEUE').getResponse()).to.deep.equal(expectResponse);
     });
 
     it('should trim the outputSpeech if it already has the SSML flag', () => {
@@ -83,6 +99,23 @@ describe('ResponseFactory', () => {
             };
 
         expect(responseBuilder.reprompt(speechOutput).getResponse()).to.deep.equal(expectResponse);
+    });
+
+    it('should build response with Ssml reprompt with play behavior', () => {
+        const responseBuilder : ResponseBuilder = ResponseFactory.init();
+        const speechOutput = 'HelloWorld!';
+        const expectResponse = {
+                reprompt : {
+                    outputSpeech: {
+                        ssml: '<speak>' + speechOutput + '</speak>',
+                        type: 'SSML',
+                        playBehavior : 'ENQUEUE',
+                    },
+                },
+                shouldEndSession : false,
+            };
+
+        expect(responseBuilder.reprompt(speechOutput, 'ENQUEUE').getResponse()).to.deep.equal(expectResponse);
     });
 
     it('should build response with simple card', () => {
@@ -647,6 +680,24 @@ describe('ResponseFactory', () => {
             .to.deep.equals(expectResponse2);
         expect(ResponseFactory.init().addVideoAppLaunchDirective(videoSource, mockTitle, mockSubtitle).reprompt(speechOutput).getResponse())
             .to.deep.equals(expectResponse2);
+    });
+
+    it('should build response with canFulfillIntent', () => {
+        const responseBuilder : ResponseBuilder = ResponseFactory.init();
+        const canFulfillIntent : CanFulfillIntent = {
+            canFulfill : 'YES',
+            slots : {
+                foo : {
+                    canUnderstand : 'MAYBE',
+                    canFulfill : 'YES',
+                },
+            },
+        };
+        const expectedResponse = {
+            canFulfillIntent,
+        };
+
+        expect(responseBuilder.withCanFulfillIntent(canFulfillIntent).getResponse()).to.deep.equals(expectedResponse);
     });
 
     it('should build response with shouldEndSession value', () => {

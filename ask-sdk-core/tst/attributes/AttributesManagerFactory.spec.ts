@@ -11,8 +11,6 @@
  * permissions and limitations under the License.
  */
 
-'use strict';
-
 import { expect } from 'chai';
 import { AttributesManagerFactory } from '../../lib/attributes/AttributesManagerFactory';
 import { JsonProvider } from '../mocks/JsonProvider';
@@ -81,7 +79,7 @@ describe('AttributesManagerFactory', () => {
         });
     });
 
-    it('should throw an error when trying to get persistent attributes without persistence manager', async() => {
+    it('should throw an error when trying to get persistent attributes without persistence adapter', async() => {
         const requestEnvelope = JsonProvider.requestEnvelope();
         requestEnvelope.context.System.user.userId = 'userId';
         const defaultAttributesManager = AttributesManagerFactory.init({requestEnvelope});
@@ -147,7 +145,7 @@ describe('AttributesManagerFactory', () => {
         expect(await defaultAttributesManager.getPersistentAttributes()).deep.equal({key : 'value'});
     });
 
-    it('should throw an error when trying to set persistent attributes without persistence manager', () => {
+    it('should throw an error when trying to set persistent attributes without persistence adapter', () => {
         const requestEnvelope = JsonProvider.requestEnvelope();
         requestEnvelope.context.System.user.userId = 'userId';
         const defaultAttributesManager = AttributesManagerFactory.init({requestEnvelope});
@@ -157,6 +155,45 @@ describe('AttributesManagerFactory', () => {
         } catch (err) {
             expect(err.name).equal('AskSdk.AttributesManager Error');
             expect(err.message).equal('Cannot set PersistentAttributes without persistence adapter!');
+
+            return;
+        }
+
+        throw new Error('should have thrown an error!');
+    });
+
+    it('should be able to delete persistent attributes', async() => {
+        const requestEnvelope = JsonProvider.requestEnvelope();
+        requestEnvelope.context.System.user.userId = 'userId';
+        const mockPersistenceAdapter = new MockPersistenceAdapter();
+
+        const defaultAttributesManager = AttributesManagerFactory.init({
+            persistenceAdapter : mockPersistenceAdapter,
+            requestEnvelope,
+        });
+
+        expect(await defaultAttributesManager.getPersistentAttributes()).deep.equal({
+            key_1 : 'v1',
+            key_2 : 'v2',
+            state : 'mockState',
+        });
+
+        await defaultAttributesManager.deletePersistentAttributes();
+
+        expect(await defaultAttributesManager.getPersistentAttributes()).deep.equal({});
+        expect(mockPersistenceAdapter.getCounter).eq(2);
+    });
+
+    it('should throw an error when trying to delete persistent attributes without persistence adapter', async() => {
+        const requestEnvelope = JsonProvider.requestEnvelope();
+        requestEnvelope.context.System.user.userId = 'userId';
+        const defaultAttributesManager = AttributesManagerFactory.init({requestEnvelope});
+
+        try {
+            await defaultAttributesManager.deletePersistentAttributes();
+        } catch (err) {
+            expect(err.name).equal('AskSdk.AttributesManager Error');
+            expect(err.message).equal('Cannot delete PersistentAttributes without persistence adapter!');
 
             return;
         }
@@ -191,7 +228,7 @@ describe('AttributesManagerFactory', () => {
 
     });
 
-    it('should thrown an error when trying to save persistent attributes without persistence manager', async() => {
+    it('should thrown an error when trying to save persistent attributes without persistence adapter', async() => {
         const requestEnvelope = JsonProvider.requestEnvelope();
         requestEnvelope.context.System.user.userId = 'userId';
         const defaultAttributesManager = AttributesManagerFactory.init({requestEnvelope});
@@ -208,7 +245,7 @@ describe('AttributesManagerFactory', () => {
         throw new Error('should have thrown an error!');
     });
 
-    it('should should do nothing if persistentAttributes has not been changed', async() => {
+    it('should do nothing if persistentAttributes has not been changed', async() => {
         const mockPersistenceAdapter = new MockPersistenceAdapter();
 
         const requestEnvelope = JsonProvider.requestEnvelope();
@@ -229,7 +266,7 @@ describe('AttributesManagerFactory', () => {
         expect(mockPersistenceAdapter.saveCounter).equal(0);
     });
 
-    it('should make only 1 getAttributes call during multiple getPersistentAttributes', async() => {
+    it('should make only 1 getAttributes call during multiple getPersistentAttributes by default', async() => {
         const mockPersistenceAdapter = new MockPersistenceAdapter();
 
         const requestEnvelope = JsonProvider.requestEnvelope();
@@ -244,6 +281,24 @@ describe('AttributesManagerFactory', () => {
         await defaultAttributesManager.getPersistentAttributes();
         await defaultAttributesManager.getPersistentAttributes();
         expect(mockPersistenceAdapter.getCounter).equal(1);
+        expect(mockPersistenceAdapter.saveCounter).equal(0);
+    });
+
+    it('should make as many getAttributes calls as getPersistentAttributes calls when useSessionCache is false', async() => {
+        const mockPersistenceAdapter = new MockPersistenceAdapter();
+
+        const requestEnvelope = JsonProvider.requestEnvelope();
+        requestEnvelope.context.System.user.userId = 'userId';
+        const defaultAttributesManager = AttributesManagerFactory.init({
+            persistenceAdapter : mockPersistenceAdapter,
+            requestEnvelope,
+        });
+
+        await defaultAttributesManager.getPersistentAttributes(false);
+        await defaultAttributesManager.getPersistentAttributes(false);
+        await defaultAttributesManager.getPersistentAttributes(false);
+        await defaultAttributesManager.getPersistentAttributes(false);
+        expect(mockPersistenceAdapter.getCounter).equal(4);
         expect(mockPersistenceAdapter.saveCounter).equal(0);
     });
 

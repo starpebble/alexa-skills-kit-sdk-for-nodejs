@@ -11,8 +11,6 @@
  * permissions and limitations under the License.
  */
 
-'use strict';
-
 export { StandardSkillBuilder } from './skill/factory/StandardSkillBuilder';
 export { StandardSkillFactory } from './skill/factory/StandardSkillFactory';
 export { SkillBuilders } from './skill/SkillBuilders';
@@ -22,27 +20,35 @@ export {
     AttributesManagerFactory,
     BaseSkillBuilder,
     BaseSkillFactory,
+    createAskSdkError,
     CustomSkillBuilder,
     CustomSkillFactory,
     DefaultApiClient,
-    DefaultErrorMapper,
-    DefaultHandlerAdapter,
-    DefaultRequestDispatcher,
-    DefaultRequestHandlerChain,
-    DefaultRequestMapper,
     ErrorHandler,
-    ErrorMapper,
-    GenericRequestHandlerChain,
-    HandlerAdapter,
+    escapeXmlCharacters,
+    getAccountLinkingAccessToken,
+    getApiAccessToken,
+    getDeviceId,
+    getUserId,
+    getDialogState,
+    getIntentName,
+    getLocale,
+    getRequest,
+    getRequestType,
+    getSlot,
+    getSlotValue,
+    getSupportedInterfaces,
+    getViewportDpiGroup,
+    getViewportOrientation,
+    getViewportProfile,
+    getViewportSizeGroup,
     HandlerInput,
     ImageHelper,
+    isNewSession,
     PersistenceAdapter,
     PlainTextContentHelper,
-    RequestDispatcher,
     RequestHandler,
-    RequestHandlerChain,
     RequestInterceptor,
-    RequestMapper,
     ResponseBuilder,
     ResponseFactory,
     ResponseInterceptor,
@@ -50,6 +56,12 @@ export {
     Skill,
     SkillConfiguration,
     TextContentHelper,
+    ViewportDpiGroup,
+    ViewportDpiGroupOrder,
+    ViewportOrientation,
+    ViewportProfile,
+    ViewportSizeGroup,
+    ViewportSizeGroupOrder,
 } from 'ask-sdk-core';
 
 export {

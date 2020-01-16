@@ -11,10 +11,8 @@
  * permissions and limitations under the License.
  */
 
-'use strict';
-
 import { RequestEnvelope } from 'ask-sdk-model';
-import { createAskSdkError } from '../util/AskSdkUtils';
+import { createAskSdkError } from 'ask-sdk-runtime';
 import { AttributesManager } from './AttributesManager';
 import { PersistenceAdapter } from './persistence/PersistenceAdapter';
 
@@ -46,23 +44,23 @@ export class AttributesManagerFactory {
             getRequestAttributes() : {[key : string] : any} {
                 return thisRequestAttributes;
             },
-            getSessionAttributes() : {[key : string] : any} {
+            getSessionAttributes<T = {[key : string] : any}>() : T {
                 if (!options.requestEnvelope.session) {
                     throw createAskSdkError(
                         'AttributesManager',
                         'Cannot get SessionAttributes from out of session request!');
                 }
 
-                return thisSessionAttributes;
+                return thisSessionAttributes as T;
             },
-            async getPersistentAttributes() : Promise<{[key : string] : any}> {
+            async getPersistentAttributes(useSessionCache : boolean = true) : Promise<{[key : string] : any}> {
                 if (!options.persistenceAdapter) {
                     throw createAskSdkError(
                         'AttributesManager',
                         'Cannot get PersistentAttributes without PersistenceManager');
                 }
 
-                if (!persistentAttributesSet) {
+                if (!persistentAttributesSet || !useSessionCache) {
                     thisPersistentAttributes = await options.persistenceAdapter.getAttributes(options.requestEnvelope);
                     persistentAttributesSet = true;
                 }
@@ -101,6 +99,18 @@ export class AttributesManagerFactory {
                 if (persistentAttributesSet) {
                     await options.persistenceAdapter.saveAttributes(options.requestEnvelope, thisPersistentAttributes);
                 }
+            },
+            async deletePersistentAttributes() : Promise<void> {
+                if (!options.persistenceAdapter) {
+                    throw createAskSdkError(
+                        'AttributesManager',
+                        'Cannot delete PersistentAttributes without persistence adapter!');
+                }
+
+                await options.persistenceAdapter.deleteAttributes(options.requestEnvelope);
+
+                thisPersistentAttributes = undefined;
+                persistentAttributesSet = false;
             },
         };
     }

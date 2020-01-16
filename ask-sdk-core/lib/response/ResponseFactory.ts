@@ -11,9 +11,8 @@
  * permissions and limitations under the License.
  */
 
-'use strict';
-
 import {
+    canfulfill,
     dialog,
     Directive,
     Intent,
@@ -38,6 +37,7 @@ import ElicitSlotDirective = dialog.ElicitSlotDirective;
 import ConfirmSlotDirective = dialog.ConfirmSlotDirective;
 import ConfirmIntentDirective = dialog.ConfirmIntentDirective;
 import AudioItemMetadata = interfaces.audioplayer.AudioItemMetadata;
+import CanFulfillIntent = canfulfill.CanFulfillIntent;
 
 /**
  * Responsible for building JSON responses using ask-sdk-model as per the Alexa skills kit interface
@@ -75,25 +75,35 @@ export class ResponseFactory {
         }
 
         return {
-            speak(speechOutput : string) : ResponseBuilder {
+            speak(speechOutput : string, playBehavior? : ui.PlayBehavior) : ResponseBuilder {
                 response.outputSpeech = {
                     type : 'SSML',
                     ssml : '<speak>'
                            + trimOutputSpeech(speechOutput)
                            + '</speak>',
+                    playBehavior,
                 };
+
+                if (!playBehavior) {
+                    delete response.outputSpeech.playBehavior;
+                }
 
                 return this;
             },
-            reprompt(repromptSpeechOutput : string) : ResponseBuilder {
+            reprompt(repromptSpeechOutput : string, playBehavior? : ui.PlayBehavior) : ResponseBuilder {
                 response.reprompt = {
                     outputSpeech : {
                         type : 'SSML',
                         ssml : '<speak>'
                                + trimOutputSpeech(repromptSpeechOutput)
                                + '</speak>',
+                        playBehavior,
                     },
                 };
+
+                if (!playBehavior) {
+                    delete response.reprompt.outputSpeech.playBehavior;
+                }
 
                 if (!isVideoAppLaunchDirectivePresent()) {
                     response.shouldEndSession = false;
@@ -307,6 +317,11 @@ export class ResponseFactory {
                 delete response.shouldEndSession;
 
                 return this;
+            },
+            withCanFulfillIntent(canFulfillIntent : CanFulfillIntent) : ResponseBuilder {
+                 response.canFulfillIntent = canFulfillIntent;
+
+                 return this;
             },
             withShouldEndSession(val : boolean) : ResponseBuilder {
                 if (!isVideoAppLaunchDirectivePresent()) {

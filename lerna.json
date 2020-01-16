@@ -1,10 +1,17 @@
 {
-  "lerna": "2.10.2",
+  "version": "2.7.0",
   "packages": [
     "ask-sdk",
     "ask-sdk-core",
     "ask-sdk-dynamodb-persistence-adapter",
-    "ask-sdk-v1adapter"
+    "ask-sdk-runtime",
+    "ask-sdk-s3-persistence-adapter",
+    "ask-sdk-v1adapter",
+    "ask-sdk-express-adapter"
   ],
-  "version": "2.0.7"
+  "command": {
+    "bootstrap": {
+      "ci": false
+    }
+  }
 }

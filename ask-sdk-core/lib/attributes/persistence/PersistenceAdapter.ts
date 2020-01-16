@@ -11,8 +11,6 @@
  * permissions and limitations under the License.
  */
 
-'use strict';
-
 import { RequestEnvelope } from 'ask-sdk-model';
 
 /**
@@ -21,4 +19,5 @@ import { RequestEnvelope } from 'ask-sdk-model';
 export interface PersistenceAdapter {
     getAttributes(requestEnvelope : RequestEnvelope) : Promise<{[key : string] : any}>;
     saveAttributes(requestEnvelope : RequestEnvelope, attributes : {[key : string] : any}) : Promise<void>;
+    deleteAttributes?(requestEnvelope : RequestEnvelope) : Promise<void>;
 }

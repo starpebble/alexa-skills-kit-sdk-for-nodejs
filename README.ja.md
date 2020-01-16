@@ -1,48 +1,66 @@
-# ASK SDK for Node.js [![Build Status](https://travis-ci.org/alexa/alexa-skills-kit-sdk-for-nodejs.svg?branch=2.0.x)](https://travis-ci.org/alexa/alexa-skills-kit-sdk-for-nodejs)
+<p align="center">
+  <img src="https://m.media-amazon.com/images/G/01/mobile-apps/dex/avs/docs/ux/branding/mark1._TTH_.png">
+  <br/>
+  <h1 align="center">Alexa Skills Kit SDK for Node.js</h1>
+  <p align="center"><a href="https://travis-ci.org/alexa/alexa-skills-kit-sdk-for-nodejs"><img src="https://travis-ci.org/alexa/alexa-skills-kit-sdk-for-nodejs.svg?branch=2.0.x"></a></p>
+</p>
 
-*[English](README.md) | [日本語](README.ja.md)*
-
-| Package       | NPM           |
-| ------------- | ------------- |
-|[ask-sdk](./ask-sdk)| [![npm](https://img.shields.io/npm/v/ask-sdk.svg)](https://www.npmjs.com/package/ask-sdk) [![npm](https://img.shields.io/npm/dt/ask-sdk.svg)](https://www.npmjs.com/package/ask-sdk)| 
-|[ask-sdk-core](./ask-sdk-core)| [![npm](https://img.shields.io/npm/v/ask-sdk-core.svg)](https://www.npmjs.com/package/ask-sdk-core) [![npm](https://img.shields.io/npm/dt/ask-sdk-core.svg)](https://www.npmjs.com/package/ask-sdk-core)| 
-|[ask-sdk-dynamodb-persistence-adapter](./ask-sdk-dynamodb-persistence-adapter)| [![npm](https://img.shields.io/npm/v/ask-sdk-dynamodb-persistence-adapter.svg)](https://www.npmjs.com/package/ask-sdk-dynamodb-persistence-adapter) [![npm](https://img.shields.io/npm/dt/ask-sdk-dynamodb-persistence-adapter.svg)](https://www.npmjs.com/package/ask-sdk-dynamodb-persistence-adapter)|
-|[ask-sdk-v1adapter](./ask-sdk-v1adapter)|[![npm](https://img.shields.io/npm/v/ask-sdk-v1adapter.svg)](https://www.npmjs.com/package/ask-sdk-v1adapter) [![npm](https://img.shields.io/npm/dt/ask-sdk-v1adapter.svg)](https://www.npmjs.com/package/ask-sdk-v1adapter)|
+*[English](https://github.com/alexa/alexa-skills-kit-sdk-for-nodejs/blob/2.0.x/README.md) | [日本語](https://github.com/alexa/alexa-skills-kit-sdk-for-nodejs/blob/2.0.x/README.ja.md)*
 
 ASK SDK v2 for Node.jsを使うと、ボイラープレートコード（毎回書かなければならないお決まりのコード）を書く手間が不要になります。これにより空いた時間をさまざまな機能の実装に充てることができ、人気のスキルをより簡単に作成できるようになります。
 
-SDKを使って開発を始めるには、以下のリソースをご覧ください。
+## パッケージのバージョン
 
-## ガイド
+| Package       | NPM           |
+| ------------- | ------------- |
+|[ask-sdk](https://github.com/alexa/alexa-skills-kit-sdk-for-nodejs/tree/2.0.x/ask-sdk)| [![npm](https://img.shields.io/npm/v/ask-sdk.svg)](https://www.npmjs.com/package/ask-sdk) [![npm](https://img.shields.io/npm/dt/ask-sdk.svg)](https://www.npmjs.com/package/ask-sdk)|
+|[ask-sdk-core](https://github.com/alexa/alexa-skills-kit-sdk-for-nodejs/tree/2.0.x/ask-sdk-core)| [![npm](https://img.shields.io/npm/v/ask-sdk-core.svg)](https://www.npmjs.com/package/ask-sdk-core) [![npm](https://img.shields.io/npm/dt/ask-sdk-core.svg)](https://www.npmjs.com/package/ask-sdk-core)|
+|[ask-sdk-dynamodb-persistence-adapter](https://github.com/alexa/alexa-skills-kit-sdk-for-nodejs/tree/2.0.x/ask-sdk-dynamodb-persistence-adapter)| [![npm](https://img.shields.io/npm/v/ask-sdk-dynamodb-persistence-adapter.svg)](https://www.npmjs.com/package/ask-sdk-dynamodb-persistence-adapter) [![npm](https://img.shields.io/npm/dt/ask-sdk-dynamodb-persistence-adapter.svg)](https://www.npmjs.com/package/ask-sdk-dynamodb-persistence-adapter)|
+|[ask-sdk-runtime](https://github.com/alexa/alexa-skills-kit-sdk-for-nodejs/tree/2.0.x/ask-sdk-runtime)| [![npm](https://img.shields.io/npm/v/ask-sdk-runtime.svg)](https://www.npmjs.com/package/ask-sdk-runtime) [![npm](https://img.shields.io/npm/dt/ask-sdk-runtime.svg)](https://www.npmjs.com/package/ask-sdk-runtime)|
+|[ask-sdk-s3-persistence-adapter](https://github.com/alexa/alexa-skills-kit-sdk-for-nodejs/tree/2.0.x/ask-sdk-s3-persistence-adapter)| [![npm](https://img.shields.io/npm/v/ask-sdk-s3-persistence-adapter.svg)](https://www.npmjs.com/package/ask-sdk-s3-persistence-adapter) [![npm](https://img.shields.io/npm/dt/ask-sdk-s3-persistence-adapter.svg)](https://www.npmjs.com/package/ask-sdk-s3-persistence-adapter)|
+|[ask-sdk-v1adapter](https://github.com/alexa/alexa-skills-kit-sdk-for-nodejs/tree/2.0.x/ask-sdk-v1adapter)|[![npm](https://img.shields.io/npm/v/ask-sdk-v1adapter.svg)](https://www.npmjs.com/package/ask-sdk-v1adapter) [![npm](https://img.shields.io/npm/dt/ask-sdk-v1adapter.svg)](https://www.npmjs.com/package/ask-sdk-v1adapter)|
+|[ask-sdk-express-adapter](https://github.com/alexa/alexa-skills-kit-sdk-for-nodejs/tree/2.0.x/ask-sdk-express-adapter)|[![npm](https://img.shields.io/npm/v/ask-sdk-express-adapter.svg)](https://www.npmjs.com/package/ask-sdk-express-adapter) [![npm](https://img.shields.io/npm/dt/ask-sdk-express-adapter.svg)](https://www.npmjs.com/package/ask-sdk-express-adapter)|
 
-### [ASK SDKのセットアップ](../../wiki/[Japanese]-Setting-Up-The-ASK-SDK)
-NPMプロジェクトに依存関係としてSDKをインストールする方法を説明します。
+## SDKでサポートされているAlexaの機能
 
-### [初めてのスキル開発](../../wiki/[Japanese]-Developing-Your-First-Skill)
-Hello Worldサンプルをビルドする手順を詳しく説明します。
+- [Amazon Pay](https://developer.amazon.com/docs/amazon-pay/integrate-skill-with-amazon-pay.html)
+- [Audio Player](https://developer.amazon.com/docs/custom-skills/audioplayer-interface-reference.html)
+- [Display – 画面付きデバイス用のBodyテンプレート](https://developer.amazon.com/docs/custom-skills/create-skills-for-alexa-enabled-devices-with-a-screen.html)
+- [Gadgets Game Engine – Echo Buttons（日本未対応）](https://developer.amazon.com/docs/custom-skills/game-engine-interface-reference.html)
+- [Directiveサービス（プログレッシブ応答）](https://developer.amazon.com/docs/custom-skills/send-the-user-a-progressive-response.html)
+- [メッセージ](https://developer.amazon.com/docs/smapi/send-a-message-request-to-a-skill.html)
+- [収益化](https://developer.amazon.com/alexa-skills-kit/make-money)
+- [ビデオ](https://developer.amazon.com/docs/custom-skills/videoapp-interface-reference.html)
+- [デバイスのアドレス](https://developer.amazon.com/docs/custom-skills/device-address-api.html)
+- [リスト](https://developer.amazon.com/docs/custom-skills/access-the-alexa-shopping-and-to-do-lists.html#alexa-lists-access)
+- [ユーザー連絡先情報のリクエスト](https://developer.amazon.com/docs/smapi/alexa-settings-api-reference.html)
+- [ユーザー設定情報の取得](https://developer.amazon.com/docs/smapi/alexa-settings-api-reference.html)
+- [アカウントリンク](https://developer.amazon.com/docs/account-linking/understand-account-linking.html)
+- [スロットタイプ値の同義語とIDを定義する（エンティティ解決）](https://developer.amazon.com/docs/custom-skills/define-synonyms-and-ids-for-slot-type-values-entity-resolution.html)
+- [ダイアログ管理](https://developer.amazon.com/docs/custom-skills/dialog-interface-reference.html)
+- [Location Services](https://developer.amazon.com/docs/custom-skills/location-services-for-alexa-skills.html)
+- [Reminders](https://developer.amazon.com/docs/smapi/alexa-reminders-overview.html)
 
-### [ASK SDK移行ガイド](../../wiki/[Japanese]-ASK-SDK-Migration-Guide)
-SDK v1からSDK v2にAlexaスキルを移行する手順を説明します。
+### プレビュー機能
 
-### [リクエスト処理](../../wiki/[Japanese]-Request-Processing)
-リクエストハンドラー、例外ハンドラー、リクエストと応答のインターセプターをビルドする方法を説明します。
+以下の機能は、公開プレビュー版としてリリースされます。インターフェースは今後のリリースで変更される可能性があります。
 
-### [スキルのアトリビュート](../../wiki/[Japanese]-Skill-Attributes)
-スキルのアトリビュートを使ったスキルデータの保存と取得の方法を説明します。
+- [Connections](https://developer.amazon.com/blogs/alexa/post/7b332b32-893e-4cad-be07-a5877efcbbb4/skill-connections-preview-now-skills-can-work-together-to-help-customers-get-more-done)
+- [Alexa Presentation Language](https://developer.amazon.com/docs/alexa-presentation-language/apl-overview.html)
+- [無指名対話](https://developer.amazon.com/docs/custom-skills/understand-name-free-interaction-for-custom-skills.html)
 
-### [応答のビルド](../../wiki/[Japanese]-Response-Building)
-ResponseBuilderを使って、テキスト、カード、オーディオといった複数の要素を使用して1つの応答を構成する方法を説明します。
+## 技術資料
 
-### [Alexaサービスクライアント](../../wiki/[Japanese]-Alexa-Service-Clients)
-サービスクライアントを使ってスキルからAlexa APIにアクセスする方法を説明します。.
-
-### [スキルビルダー](../../wiki/[Japanese]-Skill-Builders)
-スキルインスタンスの構成と作成の方法を説明します。
-
-### [スキル内課金（英語）](../../wiki/Managing-In-Skill-Purchases)
-スキル内課金とスキル内での購入を管理する方法を説明します。
+| 言語 | ドキュメント |
+| -------- | ------------- |
+| [English](https://ask-sdk-for-nodejs.readthedocs.io/en/latest/) | [![Documentation Status](https://readthedocs.org/projects/ask-sdk-for-nodejs/badge/?version=latest)](https://ask-sdk-for-nodejs.readthedocs.io/en/latest/?badge=latest) |
+| [日本語](https://ask-sdk-for-nodejs.readthedocs.io/ja/latest/) | [![Documentation Status](https://readthedocs.org/projects/ask-sdk-for-nodejs-japanese/badge/?version=latest)](https://ask-sdk-for-nodejs.readthedocs.io/ja/latest/?badge=latest) |
 
 ## サンプル
+
+SDKは、ネイティブのAlexa JSONのリクエストと応答ではなく、モデルクラスで処理します。これらのモデルクラスはRequestおよびResponse JSONスキーマを使用して[developer docs](https://developer.amazon.com/docs/custom-skills/request-and-response-json-reference.html)から生成します。これらのモデルクラスのソースコードは[こちら](https://github.com/alexa/alexa-apis-for-nodejs)にあります。
+
+### サンプル
 
 ### [Hello World](https://github.com/alexa/skill-sample-nodejs-hello-world)
 Alexa Skills KitとAWS Lambdaの学習に役立つサンプルです。サンプルを起動すると、Alexaからの応答を聞くことができます。
@@ -76,3 +94,11 @@ Alexa Skills KitとAWS Lambdaの学習に役立つサンプルです。サンプ
 
 ## フィードバック
 Alexaの機能に関するリクエストや投票は、[こちら](https://alexa.uservoice.com/forums/906892-alexa-skills-developer-voice-and-vote)をご覧ください。
+
+## その他の言語のAlexa Skills Kit SDK
+<a href="https://github.com/amzn/alexa-skills-kit-java"><img src="https://github.com/konpa/devicon/raw/master/icons/java/java-original.svg?sanitize=true" width="25px" /> Alexa Skills Kit SDK for Java</a>
+
+<a href="https://github.com/alexa-labs/alexa-skills-kit-sdk-for-python"><img src="https://github.com/konpa/devicon/blob/master/icons/python/python-original.svg?sanitize=true" width="25px" /> Alexa Skills Kit SDK for Python</a>
+
+## Got Feedback?
+Alexaの機能に関するリクエストや投票は、[こちら](https://alexa.uservoice.com/forums/906892-alexa-skills-developer-voice-and-vote/filters/top?category_id=322783)をご覧ください。

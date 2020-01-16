@@ -2,7 +2,7 @@ ASK SDK DynamoDB Persistence Adapter package contains implementation of persiste
 
 ## What is ASK SDK v2 for Node.js
 
-The ASK SDK v2 for Node.js is an open-source Alexa Skill Development Kit. ASK SDK v2 for Node.js makes it easier for you to build highly engaging skills, by allowing you to spend more time on implementing features and less on writing boiler-plate code.
+The ASK SDK v2 for Node.js is an open-source Alexa CustomSkill Development Kit. ASK SDK v2 for Node.js makes it easier for you to build highly engaging skills, by allowing you to spend more time on implementing features and less on writing boiler-plate code.
 
 ## Installing
 ASK SDK DynamoDB Persistence Adapter package is an addon package for the core SDK ('ask-sdk-core') and thus has peer dependency of the core SDK package. From within your NPM project, run the following commands in the terminal to install them:
@@ -17,7 +17,7 @@ npm install --save ask-sdk-dynamodb-persistence-adapter
 
 ## Usage and Getting Started
 
-You can find a getting started guide [here](https://github.com/alexa/alexa-skills-kit-sdk-for-nodejs/wiki).
+You can find a getting started guide [here](https://developer.amazon.com/docs/alexa-skills-kit-sdk-for-nodejs/manage-attributes.html#dynamodbpersistenceadapter).
 
 ## Usage with TypeScript
 The ASK SDK DynamoDB Persistence Adapter package for Node.js bundles TypeScript definition files for use in TypeScript projects and to support tools that can read .d.ts files. Our goal is to keep these TypeScript definition files updated with each release for any public api.
