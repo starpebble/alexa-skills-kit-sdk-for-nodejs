@@ -7,7 +7,11 @@
 
 *[English](https://github.com/alexa/alexa-skills-kit-sdk-for-nodejs/blob/2.0.x/README.md) | [日本語](https://github.com/alexa/alexa-skills-kit-sdk-for-nodejs/blob/2.0.x/README.ja.md)*
 
-The ASK SDK v2 for Node.js makes it easier for you to build highly engaging skills by allowing you to spend more time on implementing features and less writing boiler-plate code.
+The ASK SDK v2 for Node.js makes it easier for you to build highly engaging skills by allowing you to spend more time on implementing features and less on writing boilerplate code.
+
+The ASK SMAPI SDK for Node.js provides developers a library for easily interacting
+with all Skill Management APIs (SMAPI), including interaction model, intent request
+history, and in-skill purchasing APIs.
 
 ## Package Versions
 
@@ -20,6 +24,7 @@ The ASK SDK v2 for Node.js makes it easier for you to build highly engaging skil
 |[ask-sdk-s3-persistence-adapter](https://github.com/alexa/alexa-skills-kit-sdk-for-nodejs/tree/2.0.x/ask-sdk-s3-persistence-adapter)| [![npm](https://img.shields.io/npm/v/ask-sdk-s3-persistence-adapter.svg)](https://www.npmjs.com/package/ask-sdk-s3-persistence-adapter) [![npm](https://img.shields.io/npm/dt/ask-sdk-s3-persistence-adapter.svg)](https://www.npmjs.com/package/ask-sdk-s3-persistence-adapter)|
 |[ask-sdk-v1adapter](https://github.com/alexa/alexa-skills-kit-sdk-for-nodejs/tree/2.0.x/ask-sdk-v1adapter)|[![npm](https://img.shields.io/npm/v/ask-sdk-v1adapter.svg)](https://www.npmjs.com/package/ask-sdk-v1adapter) [![npm](https://img.shields.io/npm/dt/ask-sdk-v1adapter.svg)](https://www.npmjs.com/package/ask-sdk-v1adapter)|
 |[ask-sdk-express-adapter](https://github.com/alexa/alexa-skills-kit-sdk-for-nodejs/tree/2.0.x/ask-sdk-express-adapter)|[![npm](https://img.shields.io/npm/v/ask-sdk-express-adapter.svg)](https://www.npmjs.com/package/ask-sdk-express-adapter) [![npm](https://img.shields.io/npm/dt/ask-sdk-express-adapter.svg)](https://www.npmjs.com/package/ask-sdk-express-adapter)|
+|[ask-smapi-sdk](https://github.com/alexa/alexa-skills-kit-sdk-for-nodejs/tree/2.0.x/ask-smapi-sdk)| [![npm](https://img.shields.io/npm/v/ask-smapi-sdk.svg)](https://www.npmjs.com/package/ask-smapi-sdk) [![npm](https://img.shields.io/npm/dt/ask-sampi-sdk.svg)](https://www.npmjs.com/package/ask-smapi-sdk)|
 
 ## Alexa Features Supported by SDK
 
@@ -33,7 +38,7 @@ The ASK SDK v2 for Node.js makes it easier for you to build highly engaging skil
 - [Video](https://developer.amazon.com/docs/custom-skills/videoapp-interface-reference.html)
 - [Device Address](https://developer.amazon.com/docs/custom-skills/device-address-api.html)
 - [Lists](https://developer.amazon.com/docs/custom-skills/access-the-alexa-shopping-and-to-do-lists.html#alexa-lists-access)
-- [Request for customer contact information](https://developer.amazon.com/docs/smapi/alexa-settings-api-reference.html)
+- [Request for customer contact information](https://developer.amazon.com/docs/alexa/custom-skills/request-customer-contact-information-for-use-in-your-skill.html)
 - [Obtain customer settings information](https://developer.amazon.com/docs/smapi/alexa-settings-api-reference.html)
 - [Account Linking](https://developer.amazon.com/docs/account-linking/understand-account-linking.html)
 - [Entity Resolution](https://developer.amazon.com/docs/custom-skills/define-synonyms-and-ids-for-slot-type-values-entity-resolution.html)

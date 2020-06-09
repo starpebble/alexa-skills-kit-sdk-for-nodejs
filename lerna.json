@@ -1,16 +1,18 @@
 {
-  "version": "2.7.0",
+  "version": "2.8.0",
   "packages": [
     "ask-sdk",
     "ask-sdk-core",
     "ask-sdk-dynamodb-persistence-adapter",
     "ask-sdk-runtime",
     "ask-sdk-s3-persistence-adapter",
-    "ask-sdk-v1adapter",
-    "ask-sdk-express-adapter"
+    "ask-sdk-v1adapter"
   ],
   "command": {
     "bootstrap": {
+      "npmClientArgs": [
+        "--no-package-lock"
+      ],
       "ci": false
     }
   }

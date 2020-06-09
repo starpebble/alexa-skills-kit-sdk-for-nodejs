@@ -56,14 +56,21 @@ export class StandardSmapiClientBuilder extends SmapiClientBuilder {
 export class CustomSmapiClientBuilder extends StandardSmapiClientBuilder {
     private apiClient : ApiClient;
     private apiEndpoint : string;
+    private authEndpoint? : string;
 
-    public withApiEndpoint(apiEndpoint : string) : SmapiClientBuilder {
+    public withApiEndpoint(apiEndpoint : string) : CustomSmapiClientBuilder {
         this.apiEndpoint = apiEndpoint;
 
         return this;
     }
 
-    public withApiClient(apiClient : ApiClient) : SmapiClientBuilder {
+    public withAuthEndpoint(authEndpoint : string) : CustomSmapiClientBuilder {
+        this.authEndpoint = authEndpoint;
+
+        return this;
+    }
+
+    public withApiClient(apiClient : ApiClient) : CustomSmapiClientBuilder {
         this.apiClient = apiClient;
 
         return this;
@@ -90,6 +97,7 @@ export class CustomSmapiClientBuilder extends StandardSmapiClientBuilder {
                 clientId: this.refreshTokenConfig.clientId,
                 clientSecret: this.refreshTokenConfig.clientSecret,
                 refreshToken: this.refreshTokenConfig.refreshToken,
+                authEndpoint: this.authEndpoint,
             };
 
             return new services.skillManagement.SkillManagementServiceClient(apiConfiguration, authenticationConfiguration, this.customUserAgent);
